@@ -11,6 +11,8 @@ target/
 *.iws
 *.iml
 *.ipr
+users.txt
+Score.txt
 
 ### Eclipse ###
 .apt_generated

@@ -17,6 +17,10 @@ public class MainGame extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        if (!authenticateUser()) {
+            System.out.println("User authentication failed or user is not registered.");
+            return;
+        }
         VBox mainLayout = new VBox(20);
         mainLayout.setAlignment(Pos.CENTER);
 
@@ -46,6 +50,18 @@ public class MainGame extends Application {
         if (gameLogic.checkGuess(guessedHeads)) {
             leaderboard.addScore(gameLogic.getScore());
         }
+    }
+
+    private boolean authenticateUser() {
+        LoginWindow loginWindow = new LoginWindow();
+
+        if (!loginWindow.display()) {
+            RegisterWindow registerWindow = new RegisterWindow();
+            registerWindow.display();
+
+            return loginWindow.display();
+        }
+        return true;
     }
 
     public static void main(String[] args) {

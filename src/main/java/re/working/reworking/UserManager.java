@@ -21,15 +21,18 @@ public class UserManager {
         return isLoggedIn;
     }
     public static void register(String username, String password) {
+        ensureFileExists();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
             writer.write(username + ":" + password);
             writer.newLine();
         } catch (IOException e) {
+            System.out.println("Error writing to file");
             e.printStackTrace();
         }
     }
 
     private static Map<String, String> getUsersFromFile() {
+        ensureFileExists();
         Map<String, String> users = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
@@ -38,8 +41,20 @@ public class UserManager {
                 users.put(parts[0], parts[1]);
             }
         } catch (IOException e) {
+            System.out.println("Error reading from file");
             e.printStackTrace();
         }
         return users;
+    }
+    private static void ensureFileExists() {
+        File file = new File(FILE_NAME);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Error creating users.txt");
+                e.printStackTrace();
+            }
+        }
     }
 }
