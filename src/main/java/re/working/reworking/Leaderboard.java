@@ -23,16 +23,21 @@ public class Leaderboard {
         loadScoresFromFile();
     }
 
-    public void addScore(String username, int score) {
-        int newScore = score;
+    public void addScore(String username, int scoreIncrement) {
+        int existingScore = 0;
+        String userEntry = null;
         for (String entry : userScores) {
             String[] parts = entry.split(":");
             if (parts[0].equals(username)) {
-                newScore += Integer.parseInt(parts[1]);
-                userScores.remove(entry);
+                existingScore += Integer.parseInt(parts[1]);
+                userEntry = entry;
                 break;
             }
         }
+        if (userEntry !=null) {
+            userScores.remove(userEntry);
+        }
+        int newScore = existingScore + scoreIncrement;
         userScores.add(username + ":" + newScore);
         saveScoresToFile();
         userScores.sort((a, b) -> Integer.parseInt(b.split(":")[1]) - Integer.parseInt(a.split(":")[1]));

@@ -9,8 +9,7 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
     private Stage loginStage;
     private Stage registerStage;
-    String username = UserManager.getLoggedInUser();
-    private MainGame game = new MainGame(username);
+    private MainGame game;
     private LoginWindow loginWindow = new LoginWindow();
     private RegisterWindow registerWindow = new RegisterWindow();
 
@@ -25,6 +24,8 @@ public class MainApp extends Application {
 
         loginButton.setOnAction(e -> {
             if (loginWindow.display()) {
+                String username = UserManager.getLoggedInUser();
+                game = new MainGame(username);
                 game.launchGame();
             }
         });

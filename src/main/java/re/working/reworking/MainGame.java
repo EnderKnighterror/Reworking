@@ -48,7 +48,7 @@ public class MainGame extends Application {
 
     private void playGame(boolean guessedHeads) {
         if (gameLogic.checkGuess(guessedHeads)) {
-            leaderboard.addScore(currentUser, gameLogic.getScore());
+            leaderboard.addScore(currentUser, 1);
         }
     }
 
