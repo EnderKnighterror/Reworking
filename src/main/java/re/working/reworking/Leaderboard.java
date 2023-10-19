@@ -12,29 +12,37 @@ import java.io.PrintWriter;
 
 public class Leaderboard {
 
-    private final ObservableList<Integer> scores;
+    private final ObservableList<String> userScores;
     private final String filename = "Score.txt";
 
     public Leaderboard() {
 
-        this.scores = FXCollections.observableArrayList();
+        this.userScores = FXCollections.observableArrayList();
         loadScoresFromFile();
     }
 
-    public void addScore(int score) {
-        scores.add(score);
-        scores.sort((a, b) -> b - a); // Descending order
+    public void addScore(String username, int score) {
+        int newScore = score;
+        for (String entry : userScores) {
+            String[] parts = entry.split(":");
+            if (parts[0].equals(username)) {
+                newScore += Integer.parseInt(parts[1]);
+                userScores.remove(entry);
+                break;
+            }
+        }
+        userScores.add(username + ":" + newScore);
         saveScoresToFile();
+        userScores.sort((a, b) -> Integer.parseInt(b.split(":")[1]) - Integer.parseInt(a.split(":")[1]));
     }
 
-
-    public ListView<Integer> getScoreView() {
-        return new ListView<>(scores);
+    public ListView<String> getScoreView() {
+        return new ListView<>(userScores);
     }
     private void saveScoresToFile() {
         try (PrintWriter out = new PrintWriter(new FileWriter(filename))) {
-            for (int score : scores) {
-                out.println(score);
+            for (String entry : userScores) {
+                out.println(entry);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -44,11 +52,10 @@ public class Leaderboard {
         File file = new File(filename);
         if (file.exists()) {
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                List<Integer> loadScores = br.lines()
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toList());
-                scores.addAll(loadScores);
-                scores.sort((a, b) -> b - a);
+                List<String> loadedEntries = br.lines().collect(Collectors.toList());
+                userScores.addAll(loadedEntries);
+                userScores.sort((a, b) -> Integer.parseInt(b.split(":")[1]) - Integer.parseInt(a.split(":")[1]));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
