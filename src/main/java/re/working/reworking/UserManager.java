@@ -11,7 +11,8 @@ public class UserManager {
 
     public static boolean authenticate(String username, String password) {
         Map<String, String> users = getUsersFromFile();
-        if (users.containsKey(username) && users.get(username).equals(password)) {
+        String hashedPassword = HashUtil.hashPassword(password);
+        if (users.containsKey(username) && users.get(username).equals(hashedPassword)) {
             isLoggedIn = true;
             return true;
         }
@@ -22,8 +23,9 @@ public class UserManager {
     }
     public static void register(String username, String password) {
         ensureFileExists();
+        String hashedPassword = HashUtil.hashPassword(password);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
-            writer.write(username + ":" + password);
+            writer.write(username + ":" + hashedPassword);
             writer.newLine();
         } catch (IOException e) {
             System.out.println("Error writing to file");
