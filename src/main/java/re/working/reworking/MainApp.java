@@ -9,7 +9,8 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
     private Stage loginStage;
     private Stage registerStage;
-    private MainGame game = new MainGame();
+    String username = UserManager.getLoggedInUser();
+    private MainGame game = new MainGame(username);
     private LoginWindow loginWindow = new LoginWindow();
     private RegisterWindow registerWindow = new RegisterWindow();
 

@@ -8,15 +8,20 @@ public class UserManager {
 
     private static final String FILE_NAME = "users.txt";
     private static boolean isLoggedIn = false;
+    private static String loggedInUser = null;
 
     public static boolean authenticate(String username, String password) {
         Map<String, String> users = getUsersFromFile();
         String hashedPassword = HashUtil.hashPassword(password);
         if (users.containsKey(username) && users.get(username).equals(hashedPassword)) {
             isLoggedIn = true;
+            loggedInUser = username;
             return true;
         }
         return false;
+    }
+    public static String getLoggedInUser(){
+        return loggedInUser;
     }
     public static boolean isUserLoggedIn() {
         return isLoggedIn;

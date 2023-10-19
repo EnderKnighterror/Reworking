@@ -14,6 +14,7 @@ public class MainGame extends Application {
     private final CoinAnimation coinAnimation2 = new CoinAnimation();
     private final GameLogic gameLogic = new GameLogic();
     private final Leaderboard leaderboard = new Leaderboard();
+    private String currentUser;
 
     @Override
     public void start(Stage primaryStage) {
@@ -41,10 +42,13 @@ public class MainGame extends Application {
         primaryStage.setTitle("Two-Up Game");
         primaryStage.show();
     }
+    public MainGame(String username) {
+        this.currentUser = username;
+    }
 
     private void playGame(boolean guessedHeads) {
         if (gameLogic.checkGuess(guessedHeads)) {
-            leaderboard.addScore(gameLogic.getScore());
+            leaderboard.addScore(currentUser, gameLogic.getScore());
         }
     }
 

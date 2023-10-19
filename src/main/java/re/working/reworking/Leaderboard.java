@@ -4,8 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import java.io.*;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.util.Pair;
 
 
 import java.io.PrintWriter;
@@ -52,7 +54,10 @@ public class Leaderboard {
         File file = new File(filename);
         if (file.exists()) {
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                List<String> loadedEntries = br.lines().collect(Collectors.toList());
+                List<String> loadedEntries = br.lines()
+                        .filter(line -> line.contains(":") && line.split(":").length == 2)
+                        .collect(Collectors.toList());
+
                 userScores.addAll(loadedEntries);
                 userScores.sort((a, b) -> Integer.parseInt(b.split(":")[1]) - Integer.parseInt(a.split(":")[1]));
 
