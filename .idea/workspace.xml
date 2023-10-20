@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="761993f9-eb40-47a2-a1e8-7476c31d0555" name="Changes" comment="" />
+    <list default="true" id="761993f9-eb40-47a2-a1e8-7476c31d0555" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/GameWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/JavaSQL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/WriteFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/CoinAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/CoinAnimation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/GameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/HashUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/HashUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/LoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/LoginWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/MainApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/MainGame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/RegisterWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/RegisterWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/UserManager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,18 +56,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/2162357/IdeaProjects/Reworking/src/main/resources/re/working/reworking&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/javaLibraies/jBCrypt-0.4.zip",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\2162357\IdeaProjects\Reworking\src\main\resources\re\working\reworking" />
@@ -80,5 +98,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -1,6 +1,7 @@
 package re.working.reworking;
 
 import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 public class RegisterWindow {
 
@@ -19,28 +22,73 @@ public class RegisterWindow {
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
-        grid.setVgap(10);
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(8);
         grid.setHgap(10);
 
-        Label usernameLabel = new Label("Username:");
-        TextField usernameField = new TextField();
-        Label passwordLabel = new Label("Password:");
-        PasswordField passwordField = new PasswordField();
+        Label infoLabel = new Label("");
+        GridPane.setConstraints(infoLabel, 1, 4);
 
-        Button registerButton = new Button("Register");
+        Label usernameLabel = new Label("Username");
+        GridPane.setConstraints(usernameLabel, 0, 0);
+
+        TextField usernameInput = new TextField();
+        GridPane.setConstraints(usernameInput, 1, 0);
+
+        Label passwordLabel = new Label("Password:");
+        GridPane.setConstraints(passwordLabel, 0, 1);
+
+        PasswordField passwordInput = new PasswordField();
+        GridPane.setConstraints(passwordInput, 1, 1);
+
+        Button registerButton = new Button("Register New User");
+        GridPane.setConstraints(registerButton, 1, 2);
         registerButton.setOnAction(e -> {
-            UserManager.register(usernameField.getText(), passwordField.getText());
-            window.close();
+            String registeringUsername = usernameInput.getText().trim();
+            String registeringPassword = passwordInput.getText().trim();
+
+            if (isEmpty(registeringUsername) || isEmpty(registeringPassword)) {
+                infoLabel.setText("Username and password are required!");
+
+            } else {
+                if (JavaSQL.checkDuplicateUser(registeringUsername)) {
+                    infoLabel.setText("Username already in use");
+                } else {
+                    String hashedPassword = HashUtil.hashPassword(registeringPassword);
+                    User registeringUser = new User(registeringUsername, hashedPassword);
+
+                    try {
+                        JavaSQL.addUser(registeringUser);
+                        infoLabel.setText("User added successfully!");
+                        window.close();
+                    } catch (RuntimeException ex) {
+                        infoLabel.setText("Failed to register. Database error");
+                        ex.printStackTrace();
+                    }
+                }
+            }
         });
 
-        grid.add(usernameLabel, 0, 0);
-        grid.add(usernameField, 1, 0);
-        grid.add(passwordLabel, 0, 1);
-        grid.add(passwordField, 1, 1);
-        grid.add(registerButton, 1, 2);
+        Button closeButton = new Button("Close");
+        GridPane.setConstraints(closeButton, 1, 3);
+        closeButton.setOnAction(e -> window.close());
+
+        grid.getChildren().addAll(
+                usernameLabel,
+                usernameInput,
+                passwordLabel,
+                passwordInput,
+                registerButton,
+                closeButton,
+                infoLabel
+        );
 
         Scene scene = new Scene(grid, 300, 200);
         window.setScene(scene);
         window.showAndWait();
+    }
+
+    private static boolean isEmpty(String str) {
+        return Objects.equals(str, "");
     }
 }
