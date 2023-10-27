@@ -1,21 +1,21 @@
 package re.working.reworking;
 
 public class User {
-    private String userId;
+    private String User_id;
     private String username;
     private String passwordHash;
 
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
+                "User_id=" + User_id +
                 ", username='" + username + '\'' +
                 ", passwordHash='" + passwordHash + '\'' +
                 '}';
     }
 
-    public User(String userId, String username, String passwordHash) {
-        this.userId = userId;
+    public User(String User_id, String username, String passwordHash) {
+        this.User_id = User_id;
         this.username = username;
         this.passwordHash = passwordHash;
     }
@@ -25,12 +25,12 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUser_id() {
+        return User_id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser_id(String User_id) {
+        this.User_id = User_id;
     }
 
     public String getUsername() {

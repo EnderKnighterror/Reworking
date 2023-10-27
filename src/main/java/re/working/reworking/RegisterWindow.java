@@ -15,10 +15,9 @@ import java.util.Objects;
 
 public class RegisterWindow {
 
-    public void display() {
-        Stage window = new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Register");
+    public void display(Stage primaryStage) {
+        primaryStage.setTitle("Register");
+
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -60,7 +59,10 @@ public class RegisterWindow {
                     try {
                         JavaSQL.addUser(registeringUser);
                         infoLabel.setText("User added successfully!");
-                        window.close();
+                        primaryStage.close();
+                        LoginWindow lw = new LoginWindow();
+                        Stage n = new Stage();
+                        lw.display(n);
                     } catch (RuntimeException ex) {
                         infoLabel.setText("Failed to register. Database error");
                         ex.printStackTrace();
@@ -71,7 +73,7 @@ public class RegisterWindow {
 
         Button closeButton = new Button("Close");
         GridPane.setConstraints(closeButton, 1, 3);
-        closeButton.setOnAction(e -> window.close());
+        closeButton.setOnAction(e -> primaryStage.close());
 
         grid.getChildren().addAll(
                 usernameLabel,
@@ -84,8 +86,8 @@ public class RegisterWindow {
         );
 
         Scene scene = new Scene(grid, 300, 200);
-        window.setScene(scene);
-        window.showAndWait();
+        primaryStage.setScene(scene);
+        primaryStage.showAndWait();
     }
 
     private static boolean isEmpty(String str) {

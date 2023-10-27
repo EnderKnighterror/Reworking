@@ -1,75 +1,40 @@
 package re.working.reworking;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
-import java.io.*;
-import java.util.Comparator;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+
+
 import java.util.List;
-import java.util.stream.Collectors;
-import javafx.util.Pair;
 
+public class Leaderboard extends Application {
 
-import java.io.PrintWriter;
+    private LeaderboardPane leaderboardPane;
 
-public class Leaderboard {
+    @Override
+    public void start(Stage primaryStage) {
+        VBox root = new VBox(10);
+        Button showLeaderboardBtn = new Button("Show Leaderboard");
+        leaderboardPane = new LeaderboardPane(); // our custom pane
+        leaderboardPane.setVisible(false); // hide it initially
 
-    private final ObservableList<String> userScores;
-    private final String filename = "Score.txt";
+        showLeaderboardBtn.setOnAction(event -> {
+            leaderboardPane.refreshLeaderboard(10); // refresh and show top 10 scores
+            leaderboardPane.setVisible(true); // make it visible
+        });
 
-    public Leaderboard() {
+        root.getChildren().addAll(showLeaderboardBtn, leaderboardPane);
 
-        this.userScores = FXCollections.observableArrayList();
-        loadScoresFromFile();
+        Scene scene = new Scene(root, 300, 500);
+        primaryStage.setTitle("Main Game Menu");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
-    public void addScore(String username, int scoreIncrement) {
-        int existingScore = 0;
-        String userEntry = null;
-        for (String entry : userScores) {
-            String[] parts = entry.split(":");
-            if (parts[0].equals(username)) {
-                existingScore += Integer.parseInt(parts[1]);
-                userEntry = entry;
-                break;
-            }
-        }
-        if (userEntry !=null) {
-            userScores.remove(userEntry);
-        }
-        int newScore = existingScore + scoreIncrement;
-        userScores.add(username + ":" + newScore);
-        saveScoresToFile();
-        userScores.sort((a, b) -> Integer.parseInt(b.split(":")[1]) - Integer.parseInt(a.split(":")[1]));
-    }
-
-    public ListView<String> getScoreView() {
-        return new ListView<>(userScores);
-    }
-    private void saveScoresToFile() {
-        try (PrintWriter out = new PrintWriter(new FileWriter(filename))) {
-            for (String entry : userScores) {
-                out.println(entry);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void loadScoresFromFile() {
-        File file = new File(filename);
-        if (file.exists()) {
-            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                List<String> loadedEntries = br.lines()
-                        .filter(line -> line.contains(":") && line.split(":").length == 2)
-                        .collect(Collectors.toList());
-
-                userScores.addAll(loadedEntries);
-                userScores.sort((a, b) -> Integer.parseInt(b.split(":")[1]) - Integer.parseInt(a.split(":")[1]));
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    public static void main(String[] args) {
+        launch(args);
     }
 }
-

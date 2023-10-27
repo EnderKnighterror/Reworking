@@ -8,49 +8,32 @@ public class GameLogic {
         this.score = 0;
     }
 
-    public String checkGuess(boolean guessedHeads, CoinAnimation coin1, CoinAnimation coin2, String playerName) {
-        if (playerName.equals("")) {
+    public String playGame(Boolean coin1, Boolean coin2, String currentBet, String playerName) {
+        User user = JavaSQL.getUserByUsername(playerName);
+        if (user == null) {
             return "No Player";
         }
 
-        boolean actualOutcome1 = coin1.isHeadsup();
-        boolean actualOutcome2 = coin2.isHeadsup();
-
-        coin1.stopAnimation(actualOutcome1);
-        coin2.stopAnimation(actualOutcome2);
-
-        String currentBet = guessedHeads ? "Heads Heads" : "Tails Tails";
-
         switch (currentBet) {
             case "Heads Heads":
-                if (actualOutcome1 && actualOutcome2) {
+                if (coin1 && coin2) {
                     score++;
                     resultOfGame = "HH";
-                    WriteFile.writeFileScores(
-                            "|" + playerName + "|" + currentBet + "|" + resultOfGame
-                    );
-                } else if (!actualOutcome1 && !actualOutcome2) {
+                    JavaSQL.saveScore(user.getUser_id(), score);  // Save only on win
+                } else if (!coin1 && !coin2) {
                     resultOfGame = "HH Lose";
-                    WriteFile.writeFileScores(
-                            "|" + playerName + "|" + currentBet + "|" + resultOfGame
-                    );
                 } else {
                     resultOfGame = "HH Flip Again";
                 }
                 break;
 
             case "Tails Tails":
-                if (!actualOutcome1 && !actualOutcome2) {
+                if (!coin1 && !coin2) {
                     score++;
                     resultOfGame = "TT";
-                    WriteFile.writeFileScores(
-                            "|" + playerName + "|" + currentBet + "|" + resultOfGame
-                    );
-                } else if (actualOutcome1 && actualOutcome2) {
+                    JavaSQL.saveScore(user.getUser_id(), score);  // Save only on win
+                } else if (coin1 && coin2) {
                     resultOfGame = "TT Lose";
-                    WriteFile.writeFileScores(
-                            "|" + playerName + "|" + currentBet + "|" + resultOfGame
-                    );
                 } else {
                     resultOfGame = "TT Flip Again";
                 }
@@ -58,9 +41,5 @@ public class GameLogic {
         }
 
         return resultOfGame;
-    }
-
-    public int getScore() {
-        return score;
     }
 }
