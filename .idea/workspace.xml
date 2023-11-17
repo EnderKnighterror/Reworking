@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="761993f9-eb40-47a2-a1e8-7476c31d0555" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Scores.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/Coin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/LeaderboardPane.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/coin_0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/coin_4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/CoinAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/CoinAnimation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/GameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/GameWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/HelloController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/JavaSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/JavaSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/Leaderboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/Leaderboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/MainApp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/RegisterWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/RegisterWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/re/working/reworking/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/re/working/reworking/UserManager.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

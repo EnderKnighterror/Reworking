@@ -7,13 +7,13 @@ import java.util.List;
 public class JavaSQL {
 
     // environment variables would be used in a production application
-    private static final String SQLurl = "jdbc:mysql://localhost:3306/twoupremastered?autoReconnect=true&useSSL=false";
+    private static final String SQLurl = "jdbc:mysql://localhost:3306/twoupremake?autoReconnect=true&useSSL=false";
     private static final String SQLuser = "root";
     private static final String SQLpassword = "root";
 
     public static User getUserByUsername(String authUsername) {
         User user = null;
-        String sql = "SELECT * FROM twoupremastered.users WHERE username = ?";
+        String sql = "SELECT * FROM twoupremake.users WHERE username = ?";
 
         try (
                 Connection myConn = DriverManager.getConnection(SQLurl, SQLuser, SQLpassword);
@@ -39,7 +39,7 @@ public class JavaSQL {
 
 
     public static void addUser(User user) {
-        String sql = "INSERT INTO twoupremastered.users (username, passwordHash) VALUES (?, ?)";
+        String sql = "INSERT INTO twoupremake.users (username, passwordHash) VALUES (?, ?)";
 
         try (
                 Connection myConn = DriverManager.getConnection(SQLurl, SQLuser, SQLpassword);
@@ -64,7 +64,7 @@ public class JavaSQL {
     public static boolean checkDuplicateUser(String username) {
         boolean isDuplicate = false;
         // Query to count how many users have the same username
-        String sql = "SELECT COUNT(*) FROM twoupremastered.users WHERE username = ?";
+        String sql = "SELECT COUNT(*) FROM twoupremake.users WHERE username = ?";
 
         try (
                 Connection myConn = DriverManager.getConnection(SQLurl, SQLuser, SQLpassword);
@@ -94,7 +94,7 @@ public class JavaSQL {
 
         if (existingScore > 0) {
             // Update the existing score
-            String sqlUpdate = "UPDATE twoupremastered.leaderboard SET score = ? WHERE user_id = ?";
+            String sqlUpdate = "UPDATE twoupremake.leaderboard SET score = ? WHERE user_id = ?";
 
             try (
                     Connection myConn = DriverManager.getConnection(SQLurl, SQLuser, SQLpassword);
@@ -109,7 +109,7 @@ public class JavaSQL {
             }
         } else {
             // Insert a new entry for the user
-            String sqlInsert = "INSERT INTO twoupremastered.leaderboard (user_id, score) VALUES (?, ?)";
+            String sqlInsert = "INSERT INTO twoupremake.leaderboard (user_id, score) VALUES (?, ?)";
 
             try (
                     Connection myConn = DriverManager.getConnection(SQLurl, SQLuser, SQLpassword);
@@ -127,8 +127,8 @@ public class JavaSQL {
     public static List<UserScore> getTopScores(int limit) {
         List<UserScore> topScores = new ArrayList<>();
 
-        String sql = "SELECT u.username, l.score FROM twoupremastered.leaderboard l " +
-                "JOIN twoupremastered.users u ON l.user_id = u.User_id " +
+        String sql = "SELECT u.username, l.score FROM twoupremake.leaderboard l " +
+                "JOIN twoupremake.users u ON l.user_id = u.User_id " +
                 "ORDER BY l.score DESC LIMIT ?";
 
         try (
@@ -169,7 +169,7 @@ public class JavaSQL {
         }
     }
     public static int getScoreByUserId(String userId) {
-        String sql = "SELECT score FROM twoupremastered.leaderboard WHERE user_id = ?";
+        String sql = "SELECT score FROM twoupremake.leaderboard WHERE user_id = ?";
         int existingScore = 0;
 
         try (
