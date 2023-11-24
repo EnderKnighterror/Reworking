@@ -5,6 +5,7 @@ module re.working.reworking {
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires junit;
 
     opens re.working.reworking to javafx.fxml;
     exports re.working.reworking;

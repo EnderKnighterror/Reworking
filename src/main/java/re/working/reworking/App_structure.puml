@@ -1,0 +1,260 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "re.working.reworking.App",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1525164849 { 
+   	label=working
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_85934881 { 
+   	label=reworking
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   App1583354842[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)App</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ start(primaryStage: Stage)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Coin1583354842[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Coin</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   HEADS: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   face: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ flip()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CoinAnimation1583354842[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CoinAnimation</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ coinModel(material: PhongMaterial, texture: Image, posX: int, posY: int, posZ: int): Cylinder</TD></TR>
+<TR><TD ALIGN="LEFT" >+ coinTexture(c: Coin): Image</TD></TR>
+<TR><TD ALIGN="LEFT" >+ createSpinningTimeline(cylinder: Cylinder, material: PhongMaterial, textureHeads: Image, textureTails: Image): Timeline</TD></TR>
+<TR><TD ALIGN="LEFT" >+ handleCoinAnimationStop(timelineOne: Timeline, timelineTwo: Timeline, cylinderOne: Cylinder, cylinderTwo: Cylinder, materialOne: PhongMaterial, materialTwo: PhongMaterial, coinTextureOne: Image, coinTextureTwo: Image)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ handleGame(coin1: Coin, coin2: Coin, selectedBet: String, playerName: String): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameLogic1583354842[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameLogic</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   resultOfGame: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   score: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ playGame(coin1: Boolean, coin2: Boolean, currentBet: String, playerName: String): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameWindow1583354842[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameWindow</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   playGame: Button [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   reset: Button [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   selectedRadioBtn: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- customBtn(btnText: String, posX: int, posY: int): Button</TD></TR>
+<TR><TD ALIGN="LEFT" >- customLabel(labelTxt: String, posX: int, posY: int): Label</TD></TR>
+<TR><TD ALIGN="LEFT" >- customRadioBtn(btnText: String, posX: int, posY: int): RadioButton</TD></TR>
+<TR><TD ALIGN="LEFT" >- customTextField(posX: int, posY: int): TextField</TD></TR>
+<TR><TD ALIGN="LEFT" >+ display(primaryStage: Stage, currentUser: User)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+HashUtil1583354842[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)HashUtil</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ checkPassword(plainPassword: String, hashedPassword: String): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hashPassword(password: String): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+JavaSQL1583354842[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)JavaSQL</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addUser(user: User)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkDuplicateUser(username: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getScoreByUserId(userId: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTopScores(limit: int): List&lt;UserScore&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getUserByUsername(authUsername: String): User</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveScore(userId: String, newScore: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LeaderboardPane1583354842[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LeaderboardPane</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ display(stage: Stage)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ refreshLeaderboard(topN: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LoginWindow1583354842[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LoginWindow</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ display(primaryStage: Stage)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RegisterWindow1583354842[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RegisterWindow</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ display(primaryStage: Stage)</TD></TR>
+<TR><TD ALIGN="LEFT" >- isEmpty(str: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+App1583354842 -> LoginWindow1583354842[label="start() -> display()"];
+CoinAnimation1583354842 -> GameLogic1583354842[label="handleGame() -> playGame()"];
+GameWindow1583354842 -> LeaderboardPane1583354842[label="display() -> display()"];
+LeaderboardPane1583354842 -> JavaSQL1583354842[label="refreshLeaderboard() -> getTopScores()"];
+LoginWindow1583354842 -> GameWindow1583354842[label="display() -> display()"];
+LoginWindow1583354842 -> HashUtil1583354842[label="display() -> checkPassword()"];
+LoginWindow1583354842 -> JavaSQL1583354842[label="display() -> getUserByUsername()"];
+LoginWindow1583354842 -> RegisterWindow1583354842[label="display() -> display()"];
+RegisterWindow1583354842 -> HashUtil1583354842[label="display() -> hashPassword()"];
+RegisterWindow1583354842 -> LoginWindow1583354842[label="display() -> display()"];
+    
+}
+@enduml
